@@ -103,6 +103,7 @@ module Impala
 
     def parse_row(raw)
       row = {}
+      raw.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
       fields = raw.split(metadata.delim)
 
       metadata.schema.fieldSchemas.zip(fields).each do |schema, raw_value|
